@@ -1,0 +1,7 @@
+{
+  "name": "Erado",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
