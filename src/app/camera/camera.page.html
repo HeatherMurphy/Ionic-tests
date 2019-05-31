@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  <ion-toolbar>
+    <ion-title>Camera</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <p>Hello World</p>
+  <ion-fab-button>
+      <ion-icon name="camera" (click)="takePhoto()"></ion-icon>
+  </ion-fab-button> 
+  <ion-fab-button>
+      <ion-icon name="settings" (click)="queryData()"></ion-icon>
+  </ion-fab-button> 
+  <ion-fab-button>
+      <ion-icon name="list" (click)="postOcr()"></ion-icon>
+  </ion-fab-button> 
+
+  <p>{{photo}}</p>
+
+  <p>{{stuff2}}</p>
+
+  <p>{{stuff.Url}}</p>
+
+</ion-content>
