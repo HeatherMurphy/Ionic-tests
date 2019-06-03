@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../dataService';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Vision } from '@google-cloud/vision';
 @Component({
   selector: 'app-camera',
   templateUrl: './camera.page.html',
