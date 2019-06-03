@@ -7,7 +7,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
   styleUrls: ['./camera.page.scss'],
 })
 export class CameraPage implements OnInit {
-  photo: any;
+  photo = 'C:\\Users\\yoga710\\Pictures\\tours.jpg';
   query: string;
   stuff: any;
   stuff2: any;
@@ -19,14 +19,15 @@ export class CameraPage implements OnInit {
     this.stuff = data;
     });
 }
-  postOcr(){
-    this.data.send_pic(this.photo).subscribe(data => {
+  postOcr() {
+    this.data.send_pic(this.photo);
+    this.data.photoData.subscribe(data => {
     this.stuff2 = data;
     });
   }
 
   ngOnInit() {
-    this.takePhoto();
+    //this.takePhoto();
   }
   takePhoto() {
     const options: CameraOptions = {

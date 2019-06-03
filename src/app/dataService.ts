@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class DataService {
     unSubdata: any;
-    photoData: any;
+    photoData: Observable<any>;
     query: string;
     baseUrl: string;
     picUrl: string;
