@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../dataService';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { Vision } from '@google-cloud/vision';
+import { GooglecloudvisionserviceService } from '../googlecloudvisionservice.service';
 @Component({
   selector: 'app-camera',
   templateUrl: './camera.page.html',
   styleUrls: ['./camera.page.scss'],
 })
 export class CameraPage implements OnInit {
-  photo = 'C:\\Users\\yoga710\\Pictures\\tours.jpg';
+  photo: any;
   query: string;
   stuff: any;
   stuff2: any;
-  constructor(private data: DataService, private camera: Camera) {}
+  constructor(private data: DataService, private camera: Camera, private vision: GooglecloudvisionserviceService) {}
   queryData() {
     this.query = 'Company';
     this.data.query = this.query;
@@ -21,10 +21,7 @@ export class CameraPage implements OnInit {
     });
 }
   postOcr() {
-    this.data.send_pic(this.photo);
-    this.data.photoData.subscribe(data => {
-    this.stuff2 = data;
-    });
+
   }
 
   ngOnInit() {
@@ -36,13 +33,11 @@ export class CameraPage implements OnInit {
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
-    };
+    }
     this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64 (DATA_URL):
-      //this.photo = 'data:image/jpeg;base64,' + imageData;
-      this.photo = imageData;
-     }, (err) => {
+      this.vision.getLabels(imageData).subscribe((result) => {
+        this.photo(imageData, result.json().responses);
+      }, (err) => {
       // Handle error
      });
     }
