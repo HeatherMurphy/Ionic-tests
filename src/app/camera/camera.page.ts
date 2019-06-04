@@ -33,13 +33,13 @@ export class CameraPage implements OnInit {
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
-    }
+    };
     this.camera.getPicture(options).then((imageData) => {
       this.vision.getLabels(imageData).subscribe((result) => {
         this.photo(imageData, result.json().responses);
       }, (err) => {
       // Handle error
-     });
+     })
     }
-
+  }
 }
