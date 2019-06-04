@@ -9,7 +9,6 @@ import { Camera} from '@ionic-native/camera/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DataService } from './dataService';
-import { GooglecloudvisionserviceService} from './googlecloudvisionservice.service';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -24,7 +23,6 @@ import { GooglecloudvisionserviceService} from './googlecloudvisionservice.servi
     SplashScreen,
     DataService,
     Camera,
-    GooglecloudvisionserviceService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

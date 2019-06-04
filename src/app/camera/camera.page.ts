@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../dataService';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { GooglecloudvisionserviceService } from '../googlecloudvisionservice.service';
 @Component({
   selector: 'app-camera',
   templateUrl: './camera.page.html',
@@ -12,7 +11,7 @@ export class CameraPage implements OnInit {
   query: string;
   stuff: any;
   stuff2: any;
-  constructor(private data: DataService, private camera: Camera, private vision: GooglecloudvisionserviceService) {}
+  constructor(private data: DataService, private camera: Camera) {}
   queryData() {
     this.query = 'Company';
     this.data.query = this.query;
@@ -34,12 +33,5 @@ export class CameraPage implements OnInit {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     };
-    this.camera.getPicture(options).then((imageData) => {
-      this.vision.getLabels(imageData).subscribe((result) => {
-        this.photo(imageData, result.json().responses);
-      }, (err) => {
-      // Handle error
-     })
-    }
   }
 }
